@@ -2,7 +2,7 @@
 <p>This is a system for dealership contain info about customers, sellers, sales, cars, part cars, services and mechanics, made with Java and PostgresSQL</p>
 
 <h1>Collab</h1>
-...
+https://github.com/luiamerico
 
 <h2>conceptual modeling</h2>
 
