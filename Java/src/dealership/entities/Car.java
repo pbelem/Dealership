@@ -8,11 +8,12 @@ public class Car {
 	String carCollor;
 	Double carPrice;
 	String blockEngine;
+	String licensePlate;
 	
 	public Car() {
 	}
 	
-	public Car(String chassi, String carModel, short carYear, String carCollor, Double carPrice, String blockEngine) {
+	public Car(String chassi, String carModel, short carYear, String carCollor, Double carPrice, String blockEngine, String licensePlate) {
 
 		this.chassi = chassi;
 		this.carModel = carModel;
@@ -20,6 +21,7 @@ public class Car {
 		this.carCollor = carCollor;
 		this.carPrice = carPrice;
 		this.blockEngine = blockEngine;
+		this.licensePlate = licensePlate;
 	}
 
 	public String getChassi() {
@@ -68,6 +70,14 @@ public class Car {
 
 	public void setBlockEngine(String blockEngine) {
 		this.blockEngine = blockEngine;
+	}
+
+	public String getLicensePlate() {
+		return licensePlate;
+	}
+
+	public void setLicensePlate(String licensePlate) {
+		this.licensePlate = licensePlate;
 	}
 	
 	

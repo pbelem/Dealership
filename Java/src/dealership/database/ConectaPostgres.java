@@ -3,7 +3,7 @@ package dealership.database;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-public class DatabaseConnection {
+public class ConectaPostgres {
 
 
     private Connection con = null;
