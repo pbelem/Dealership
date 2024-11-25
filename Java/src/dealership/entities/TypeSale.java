@@ -19,11 +19,11 @@ public class TypeSale {
 
 	}
 
-	public Long getTypeSale() {
+	public Long getIDTypeSale() {
 		return IDtypeSale;
 	}
 
-	public void setTypeSale(Long IDtypeSale) {
+	public void setIDTypeSale(Long IDtypeSale) {
 		this.IDtypeSale = IDtypeSale;
 	}
 

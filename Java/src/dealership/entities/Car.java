@@ -1,7 +1,7 @@
 package dealership.entities;
 
 public class Car {
-	
+
 	String chassi;
 	String carModel;
 	short carYear;
@@ -9,19 +9,17 @@ public class Car {
 	Double carPrice;
 	String blockEngine;
 	String licensePlate;
-	
+
 	public Car() {
 	}
-	
-	public Car(String chassi, String carModel, short carYear, String carCollor, Double carPrice, String blockEngine, String licensePlate) {
+
+	public Car(String chassi, String carModel, short carYear, String carCollor, Double carPrice) {
 
 		this.chassi = chassi;
 		this.carModel = carModel;
 		this.carYear = carYear;
 		this.carCollor = carCollor;
 		this.carPrice = carPrice;
-		this.blockEngine = blockEngine;
-		this.licensePlate = licensePlate;
 	}
 
 	public String getChassi() {
@@ -63,25 +61,5 @@ public class Car {
 	public void setCarPrice(Double carPrice) {
 		this.carPrice = carPrice;
 	}
-
-	public String getBlockEngine() {
-		return blockEngine;
-	}
-
-	public void setBlockEngine(String blockEngine) {
-		this.blockEngine = blockEngine;
-	}
-
-	public String getLicensePlate() {
-		return licensePlate;
-	}
-
-	public void setLicensePlate(String licensePlate) {
-		this.licensePlate = licensePlate;
-	}
-	
-	
-	
-	
 
 }

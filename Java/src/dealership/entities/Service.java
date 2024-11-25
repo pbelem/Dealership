@@ -1,5 +1,7 @@
 package dealership.entities;
 
+import dealership.util.IDGenerator;
+
 public class Service {
 
 	Long IdService;
@@ -9,20 +11,20 @@ public class Service {
 	String chassi;
 	Long CPF_customer;
 	Long CPD_mechanic;
-	
+
 	public Service() {
 	}
 
-	public Service(Long idService, String serviceName, String serviceDate, Double servicePrice, String chassi,
-			Long cPF_customer, Long cPD_mechanic) {
-		super();
-		IdService = idService;
+	public Service(String serviceName, String serviceDate, Double servicePrice, Car car, Customer customer,
+			Mechanic mechanic) {
+		IdService = IDGenerator.getInstance().getNextId();
 		this.serviceName = serviceName;
 		this.serviceDate = serviceDate;
 		this.servicePrice = servicePrice;
-		this.chassi = chassi;
-		CPF_customer = cPF_customer;
-		CPD_mechanic = cPD_mechanic;
+		chassi = car.chassi;
+		CPF_customer = customer.CPF_customer;
+		CPD_mechanic = mechanic.CPF_mechanic;
+
 	}
 
 	public Long getIdService() {
@@ -80,7 +82,5 @@ public class Service {
 	public void setCPD_mechanic(Long cPD_mechanic) {
 		CPD_mechanic = cPD_mechanic;
 	}
-	
-	
 
 }

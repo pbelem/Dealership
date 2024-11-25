@@ -15,8 +15,8 @@ public class Sale {
 	public Sale(String saleDate, Customer customer, Seller seller) {
 		this.idSale = IDGenerator.getInstance().getNextId();
 		this.saleDate = saleDate;
-		this.CPFcustomer = customer.CPF_customer;
-		this.CPFseller = seller.CPFseller;
+		CPFcustomer = customer.CPF_customer;
+		CPFseller = seller.CPFseller;
 	}
 
 	public Long getIdSale() {

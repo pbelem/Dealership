@@ -8,9 +8,8 @@ public class Mechanic {
 	public Mechanic() {
 	}
 	
-	public Mechanic(Long cPF_mechanic, String nameMechanic) {
-		super();
-		CPF_mechanic = cPF_mechanic;
+	public Mechanic(Long CPF_mechanic, String nameMechanic) {
+		this.CPF_mechanic = CPF_mechanic;
 		this.nameMechanic = nameMechanic;
 	}
 

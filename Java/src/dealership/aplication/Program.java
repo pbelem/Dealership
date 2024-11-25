@@ -23,9 +23,7 @@ public class Program {
         banco.Conectar(url, user, password);
         testeConexaoBD.teste();
         
-        Operation.registerTypeSale();
+        Operation.dealershipSale();
         
-        
-		
 	}
 }
