@@ -1,11 +1,17 @@
 package dealership.aplication;
 
+import java.util.Scanner;
+
 import dealership.database.ConectaPostgres;
 import dealership.database.testeConexaoBD;
+import dealership.util.Operation;
+
 
 public class Program {
 
 	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
 
  		@SuppressWarnings("unused")
 		String driver = "org.postgresql.Driver";
@@ -17,8 +23,9 @@ public class Program {
         banco.Conectar(url, user, password);
         testeConexaoBD.teste();
         
+        Operation.registerSeller();
         
-		
+        
 		
 	}
 }

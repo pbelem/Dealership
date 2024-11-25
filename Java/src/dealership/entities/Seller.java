@@ -8,7 +8,7 @@ public class Seller {
 	public Seller() {
 	}
 	
-	public Seller(int CPFseller, String nameSeller) {
+	public Seller(Long CPFseller, String nameSeller) {
 		super();
 		this.CPFseller = (long) CPFseller;
 		this.nameSeller = nameSeller;
