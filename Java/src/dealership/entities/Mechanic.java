@@ -19,8 +19,8 @@ public class Mechanic {
 	}
 
 
-	public void setCPF_mechanic(Long cPF_mechanic) {
-		CPF_mechanic = cPF_mechanic;
+	public void setCPF_mechanic(Long CPF_mechanic) {
+		this.CPF_mechanic = CPF_mechanic;
 	}
 
 

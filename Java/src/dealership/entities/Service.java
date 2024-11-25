@@ -10,7 +10,7 @@ public class Service {
 	Double servicePrice;
 	String chassi;
 	Long CPF_customer;
-	Long CPD_mechanic;
+	Long CPF_mechanic;
 
 	public Service() {
 	}
@@ -23,7 +23,7 @@ public class Service {
 		this.servicePrice = servicePrice;
 		chassi = car.chassi;
 		CPF_customer = customer.CPF_customer;
-		CPD_mechanic = mechanic.CPF_mechanic;
+		CPF_mechanic = mechanic.CPF_mechanic;
 
 	}
 
@@ -75,12 +75,12 @@ public class Service {
 		CPF_customer = cPF_customer;
 	}
 
-	public Long getCPD_mechanic() {
-		return CPD_mechanic;
+	public Long getCPF_mechanic() {
+		return CPF_mechanic;
 	}
 
-	public void setCPD_mechanic(Long cPD_mechanic) {
-		CPD_mechanic = cPD_mechanic;
+	public void setCPD_mechanic(Long CPD_mechanic) {
+		this.CPF_mechanic = CPD_mechanic;
 	}
 
 }

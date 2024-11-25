@@ -2,6 +2,7 @@ package dealership.util;
 
 import java.util.Scanner;
 
+import dealership.database.InsertData;
 import dealership.entities.Car;
 import dealership.entities.Customer;
 import dealership.entities.Mechanic;
@@ -13,149 +14,143 @@ import dealership.entities.TypeSale;
 
 public class Operation {
 
-	private static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
 
-	public static void dealershipSale() {
+    public static void dealershipSale() {
+        Seller seller = registerSeller();
+        Customer customer = registerCustomer();
+        Sale sale = registerSale(customer, seller);
 
-		registerSeller();
-		registerCustomer();
-		registerSale();
+        byte itemSale = registerTypeSale(sale);
 
-		byte itemSale = registerTypeSale();
-		
-		switch(itemSale) {
-		
-		case 1:
-			registerPartCar();
-			break;
-		case 2:
-			registerCar();
-			break;
-		case 3:
-			registerCar();
-			registerMechanic();
-			registerService();
-			break;
-		}
-		
-	}
+        switch (itemSale) {
+            case 1:
+                PartCar partCar = registerPartCar();
+                InsertData.insertPartCar(partCar);
+                break;
+            case 2:
+                Car car = registerCar();
+                InsertData.insertCar(car);
+                break;
+            case 3:
+                Car serviceCar = registerCar();
+                InsertData.insertCar(serviceCar);
+                Mechanic mechanic = registerMechanic();
+                InsertData.insertMechanic(mechanic);
+                Service service = registerService(serviceCar, customer, mechanic);
+                InsertData.insertService(service);
+                break;
+        }
+    }
 
-	public static void registerSeller() {
+    public static Seller registerSeller() {
+        System.out.println("Enter the seller's name");
+        String nameSeller = sc.nextLine();
 
-		System.out.println("Enter the seller's name");
-		String nameSeller = sc.nextLine();
+        System.out.println("Enter the seller's CPF");
+        Long CPFseller = sc.nextLong();
+        sc.nextLine();
 
-		System.out.println("Enter the sellers's CPF");
-		Long CPFseller = sc.nextLong();
+        Seller seller = new Seller(CPFseller, nameSeller);
+        InsertData.insertSeller(seller);
+        return seller;
+    }
 
-		Seller seller = new Seller(CPFseller, nameSeller);
-	}
+    public static Customer registerCustomer() {
+        System.out.println("Enter the customer's name");
+        String nameCustomer = sc.nextLine();
 
-	public static void registerCustomer() {
+        System.out.println("Enter the customer's cpf");
+        Long CPFcustomer = sc.nextLong();
+        sc.nextLine();
 
-		System.out.println("Enter the customer's name");
-		sc.next();
-		String nameCustomer = sc.nextLine();
+        Customer customer = new Customer(CPFcustomer, nameCustomer);
+        InsertData.insertCustomer(customer);
+        return customer;
+    }
 
-		System.out.println("Enter the customer's cpf");
-		Long CPFcustomer = sc.nextLong();
+    public static Sale registerSale(Customer customer, Seller seller) {
+        System.out.println("Enter the sale's date");
+        String saleDate = sc.nextLine();
 
-		Customer customer = new Customer(CPFcustomer, nameCustomer);
-	}
+        Sale sale = new Sale(saleDate, customer, seller);
+        InsertData.insertSale(sale);
+        return sale;
+    }
 
-	public static void registerSale() {
+    public static byte registerTypeSale(Sale sale) {
+        System.out.println("Enter the sale's item");
+        byte itemSale = sc.nextByte();
+        while (itemSale < 0 || itemSale > 3) {
+            System.out.println("Choose a valid answer");
+            itemSale = sc.nextByte();
+        }
 
-		System.out.println("Enter the sale's date");
-		sc.next();
-		String saleDate = sc.nextLine();
+        TypeSale typeSale = new TypeSale(sale, itemSale);
+        InsertData.insertTypeSale(typeSale);
+        return itemSale;
+    }
 
-		Customer customer = new Customer();
-		Seller seller = new Seller();
+    public static PartCar registerPartCar() {
+        System.out.println("Enter part car's serial number");
+        Long serialNumberPartCar = sc.nextLong();
+        sc.nextLine();
+        
+        System.out.println("Enter part car's name");
+        String partCarName = sc.nextLine();
 
-		Sale sale = new Sale(saleDate, customer, seller);
-	}
+        System.out.println("Enter part car's price");
+        Double partCarPrice = sc.nextDouble();
 
-	public static byte registerTypeSale() {
+        PartCar partCar = new PartCar(serialNumberPartCar, partCarName, partCarPrice);
+        return partCar;
+    }
 
-		System.out.println("Enter the sale's item");
-		byte itemSale = sc.nextByte();
+    public static Car registerCar() {
+        System.out.println("Enter car's chassi");
+        String chassi = sc.nextLine();
 
-		if (itemSale < 0 || itemSale > 3) {
-			while (itemSale < 0 || itemSale > 3) {
-				System.out.println("Choose a valid answser");
-				itemSale = sc.nextByte();
-			}
-		}
+        System.out.println("Enter car's model");
+        String carModel = sc.nextLine();
 
-		Sale sale = new Sale();
-		TypeSale typeSale = new TypeSale(sale, itemSale);
-		return itemSale;
+        System.out.println("Enter car's year");
+        short carYear = sc.nextShort();
+        sc.nextLine(); // Consumir a quebra de linha pendente
+        System.out.println("Enter car's color");
+        String carCollor = sc.nextLine();
 
-	}
+        System.out.println("Enter car's price");
+        Double carPrice = sc.nextDouble();
 
-	public static void registerPartCar() {
+        Car car = new Car(chassi, carModel, carYear, carCollor, carPrice);
+        return car;
+    }
 
-		System.out.println("Enter part car's serial number");
-		Long serialNumberPartCar = sc.nextLong();
+    public static Service registerService(Car car, Customer customer, Mechanic mechanic) {
+        System.out.println("Enter service's name");
+        String nameService = sc.nextLine();
 
-		System.out.println("Enter part car's name");
-		String partCarName = sc.nextLine();
+        System.out.println("Enter service's date");
+        String dateService = sc.nextLine();
 
-		System.out.println("Enter part car's price");
-		Double partCarPrice = sc.nextDouble();
+        System.out.println("Enter service's price");
+        Double priceService = sc.nextDouble();
 
-		PartCar partCar = new PartCar(serialNumberPartCar, partCarName, partCarPrice);
-	}
+        Service service = new Service(nameService, dateService, priceService, car, customer, mechanic);
+        return service;
+    }
 
-	public static void registerCar() {
-		
-		System.out.println("Enter car's chassi");
-		String chassi = sc.nextLine();
-		
-		System.out.println("Enter car's model");
-		String carModel = sc.nextLine();
-		
-		System.out.println("Enter car's year");
-		short carYear = sc.nextShort();
-		
-		System.out.println("Enter car's collor");
-		String carCollor = sc.nextLine();
-		
-		System.out.println("Enter car's price");
-		Double carPrice = sc.nextDouble();
-		
-		Car car = new Car(chassi, carModel, carYear, carCollor, carPrice);
-	}
-	
-	public static void registerService() {
-		
-		System.out.println("Enter service's name");
-		String nameService= sc.nextLine();
-		
-		System.out.println("Enter service's date");
-		String dateService = sc.nextLine();
-		
-		System.out.println("Enter service's price");
-		Double priceService = sc.nextDouble();
-		
-		Car car = new Car();
-		Customer customer = new Customer();
-		Mechanic mechanic = new Mechanic();
-		
-		Service service = new Service(nameService, dateService, priceService, car, customer, mechanic);
-		
-	}
-	
-	public static void registerMechanic() {
-		
-		System.out.println("Enter mechanic's cpf");
-		Long CPF_mechanic = sc.nextLong();
-		
-		System.out.println("Enter mechanic's name");
-		String nameMechanic = sc.nextLine();
-		
-		Mechanic mechanic = new Mechanic(CPF_mechanic, nameMechanic);
-		
-	}
+    public static Mechanic registerMechanic() {
+        System.out.println("Enter mechanic's CPF");
+        Long CPF_mechanic = sc.nextLong();
+        sc.nextLine();
+        
+        System.out.println("Enter mechanic's name");
+        String nameMechanic = sc.nextLine();
 
+        Mechanic mechanic = new Mechanic(CPF_mechanic, nameMechanic);
+        return mechanic;
+    }
 }
+
+   

@@ -9,7 +9,6 @@ public class Seller {
 	}
 	
 	public Seller(Long CPFseller, String nameSeller) {
-		super();
 		this.CPFseller = (long) CPFseller;
 		this.nameSeller = nameSeller;
 	}
