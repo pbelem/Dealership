@@ -1,28 +1,30 @@
 package dealership.entities;
 
+import dealership.util.IDGenerator;
+
 public class TypeSale {
-	
-	Long typeSale;
+
+	Long IDtypeSale;
 	Long idSale;
 	byte saleItem;
 	Double itemPrice;
-	
+
 	public TypeSale() {
 	}
-	
-	public TypeSale(Long typeSale, Long idSale, byte saleItem, Double itemPrice) {
-		this.typeSale = typeSale;
-		this.idSale = idSale;
+
+	public TypeSale(Sale sale, byte saleItem) {
+		this.IDtypeSale = IDGenerator.getInstance().getNextId();
+		this.idSale = sale.idSale;
 		this.saleItem = saleItem;
-		this.itemPrice = itemPrice;
+
 	}
 
 	public Long getTypeSale() {
-		return typeSale;
+		return IDtypeSale;
 	}
 
-	public void setTypeSale(Long typeSale) {
-		this.typeSale = typeSale;
+	public void setTypeSale(Long IDtypeSale) {
+		this.IDtypeSale = IDtypeSale;
 	}
 
 	public Long getIdSale() {
@@ -40,17 +42,4 @@ public class TypeSale {
 	public void setSaleItem(byte saleItem) {
 		this.saleItem = saleItem;
 	}
-
-	public Double getItemPrice() {
-		return itemPrice;
-	}
-
-	public void setItemPrice(Double itemPrice) {
-		this.itemPrice = itemPrice;
-	}
-	
-	
-	
-	
-
 }

@@ -1,21 +1,19 @@
 package dealership.entities;
 
-public class partCar {
+public class PartCar {
 	
 	Long serialNumber;
 	String partName;
 	Double partPrice;
-	String carModel;
 	
-	public partCar() {
+	public PartCar() {
 	}
 	
-	public partCar(Long serialNumber, String partName, Double partPrice, String carModel) {
-		super();
+	public PartCar(Long serialNumber, String partName, Double partPrice) {
 		this.serialNumber = serialNumber;
 		this.partName = partName;
 		this.partPrice = partPrice;
-		this.carModel = carModel;
+
 	}
 	public Long getSerialNumber() {
 		return serialNumber;
@@ -35,13 +33,6 @@ public class partCar {
 	public void setPartPrice(Double partPrice) {
 		this.partPrice = partPrice;
 	}
-	public String getCarModel() {
-		return carModel;
-	}
-	public void setCarModel(String carModel) {
-		this.carModel = carModel;
-	}
 	
 	
-
 }

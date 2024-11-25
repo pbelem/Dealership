@@ -1,6 +1,6 @@
 package dealership.entities;
 
-public class Adress {
+public class Address {
 	
 	Long IdAdress;
 	Long CPF_customer;
@@ -11,10 +11,10 @@ public class Adress {
 	int number;
 	String complement;
 	
-	public Adress() {
+	public Address() {
 	}
 	
-	public Adress(Long idAdress, Long cPF_customer, String state, String city, int zIP_code, String street, int number,
+	public Address(Long idAdress, Long cPF_customer, String state, String city, int zIP_code, String street, int number,
 			String complement) {
 		super();
 		IdAdress = idAdress;

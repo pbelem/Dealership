@@ -1,22 +1,22 @@
 package dealership.entities;
 
+import dealership.util.IDGenerator;
+
 public class Sale {
-	
+
 	Long idSale;
 	String saleDate;
-	int CPFcustomer;
-	int CPFseller;
-	
+	Long CPFcustomer;
+	Long CPFseller;
+
 	public Sale() {
-		
 	}
-	
-	public Sale(int idSale, String saleDate, int cPFcustomer, int cPFseller) {
-		super();
-		this.idSale = (long) idSale;
+
+	public Sale(String saleDate, Customer customer, Seller seller) {
+		this.idSale = IDGenerator.getInstance().getNextId();
 		this.saleDate = saleDate;
-		CPFcustomer = cPFcustomer;
-		CPFseller = cPFseller;
+		this.CPFcustomer = customer.CPF_customer;
+		this.CPFseller = seller.CPFseller;
 	}
 
 	public Long getIdSale() {
@@ -35,21 +35,20 @@ public class Sale {
 		this.saleDate = saleDate;
 	}
 
-	public int getCPFcustomer() {
+	public Long getCPFcustomer() {
 		return CPFcustomer;
 	}
 
-	public void setCPFcustomer(int cPFcustomer) {
-		CPFcustomer = cPFcustomer;
+	public void setCPFcustomer(Long CPFcustomer) {
+		this.CPFcustomer = CPFcustomer;
 	}
 
-	public int getCPFseller() {
+	public Long getCPFseller() {
 		return CPFseller;
 	}
 
-	public void setCPFseller(int cPFseller) {
-		CPFseller = cPFseller;
+	public void setCPFseller(Long CPFseller) {
+		this.CPFseller = CPFseller;
 	}
-	
 
 }

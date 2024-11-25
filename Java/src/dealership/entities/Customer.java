@@ -9,11 +9,33 @@ public class Customer {
 	}
 	
 	
-	public Customer(Long cPF_customer, String nameCustomer) {
+	public Customer(Long CPF_customer, String nameCustomer) {
 		super();
-		CPF_customer = cPF_customer;
+		this.CPF_customer = CPF_customer;
 		NameCustomer = nameCustomer;
 	}
+
+
+	public Long getCPF_customer() {
+		return CPF_customer;
+	}
+
+
+	public void setCPF_customer(Long cPF_customer) {
+		CPF_customer = cPF_customer;
+	}
+
+
+	public String getNameCustomer() {
+		return NameCustomer;
+	}
+
+
+	public void setNameCustomer(String nameCustomer) {
+		NameCustomer = nameCustomer;
+	}
+	
+	
 	
 	
 
