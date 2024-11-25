@@ -1,4 +1,4 @@
-package dealership.database;
+package dealership.database.operations;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

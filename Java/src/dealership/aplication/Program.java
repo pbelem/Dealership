@@ -2,9 +2,9 @@ package dealership.aplication;
 
 import java.util.Scanner;
 
-import dealership.database.ConectaPostgres;
-import dealership.database.testeConexaoBD;
-import dealership.util.Operation;
+import dealership.database.connection.ConectaPostgres;
+import dealership.database.connection.testeConexaoBD;
+import dealership.util.RegisterOperation;
 
 
 public class Program {
@@ -23,7 +23,7 @@ public class Program {
         banco.Conectar(url, user, password);
         testeConexaoBD.teste();
         
-        Operation.dealershipSale();
+        RegisterOperation.dealershipSale();
         
 	}
 }

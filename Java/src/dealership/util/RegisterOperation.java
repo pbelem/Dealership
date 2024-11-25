@@ -2,7 +2,7 @@ package dealership.util;
 
 import java.util.Scanner;
 
-import dealership.database.InsertData;
+import dealership.database.operations.InsertData;
 import dealership.entities.Car;
 import dealership.entities.Customer;
 import dealership.entities.Mechanic;
@@ -12,7 +12,7 @@ import dealership.entities.Seller;
 import dealership.entities.Service;
 import dealership.entities.TypeSale;
 
-public class Operation {
+public class RegisterOperation {
 
     private static Scanner sc = new Scanner(System.in);
 
