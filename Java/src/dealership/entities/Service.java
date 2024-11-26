@@ -27,6 +27,18 @@ public class Service {
 
 	}
 
+	public Service(Long serviceId, String nameService, String dateService, Double priceService, String chassi2,
+			Long customerCPF, Long mechanicCPF) {
+		// TODO Auto-generated constructor stub
+		IdService = serviceId;
+		serviceName = nameService;
+		serviceDate = dateService;
+		servicePrice = priceService;
+		chassi = chassi2;
+		CPF_customer = customerCPF;
+		CPF_mechanic = mechanicCPF;
+	}
+
 	public Long getIdService() {
 		return IdService;
 	}

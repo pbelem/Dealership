@@ -9,7 +9,7 @@ public class Seller {
 	}
 	
 	public Seller(Long CPFseller, String nameSeller) {
-		this.CPFseller = (long) CPFseller;
+		this.CPFseller = CPFseller;
 		this.nameSeller = nameSeller;
 	}
 
@@ -17,8 +17,8 @@ public class Seller {
 		return CPFseller;
 	}
 
-	public void setCPFseller(int CPFseller) {
-		this.CPFseller = (long) CPFseller;
+	public void setCPFseller(Long CPFseller) {
+		this.CPFseller = CPFseller;
 	}
 
 	public String getNameSeller() {

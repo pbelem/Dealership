@@ -19,6 +19,14 @@ public class Sale {
 		CPFseller = seller.CPFseller;
 	}
 
+	public Sale(Long saleId, String saleDate2, Long customerCPF, Long sellerCPF) {
+		// TODO Auto-generated constructor stub
+		idSale = saleId;
+		saleDate = saleDate2;
+		CPFcustomer = customerCPF;
+		CPFseller = sellerCPF;
+	}
+
 	public Long getIdSale() {
 		return idSale;
 	}

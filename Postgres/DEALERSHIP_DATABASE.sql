@@ -137,6 +137,20 @@ ALTER TABLE SALE
     ADD CONSTRAINT FK_TYPE_SALE FOREIGN KEY (ID_TYPE_SALE) REFERENCES TYPE_SALE(ID_TYPE_SALE);
 
 
+SELECT * FROM customer;
+SELECT id_sale FROM public.sale;
+
+DELETE FROM address;
+DELETE FROM service;
+DELETE FROM car;
+DELETE FROM sale;
+DELETE FROM customer;
+DELETE FROM customer_card;
+DELETE FROM mechanic;
+DELETE FROM part_car;
+DELETE FROM seller;
+DELETE FROM type_sale;
+
 
 
 

@@ -19,6 +19,12 @@ public class TypeSale {
 
 	}
 
+	public TypeSale(Long typeId, byte itemSale) {
+		// TODO Auto-generated constructor stub
+		typeId = IDtypeSale;
+		itemSale = saleItem;
+	}
+
 	public Long getIDTypeSale() {
 		return IDtypeSale;
 	}

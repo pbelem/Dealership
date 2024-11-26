@@ -5,6 +5,7 @@ import java.util.Scanner;
 import dealership.database.connection.ConectaPostgres;
 import dealership.database.connection.testeConexaoBD;
 import dealership.util.RegisterOperation;
+import dealership.util.UpdateOperation;
 
 
 public class Program {
