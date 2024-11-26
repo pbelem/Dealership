@@ -21,6 +21,15 @@ public class Car {
 		this.carCollor = carCollor;
 		this.carPrice = carPrice;
 	}
+	
+	
+
+	public Car(String chassi, String carModel, short carYear, String carCollor) {
+		this.chassi = chassi;
+		this.carModel = carModel;
+		this.carYear = carYear;
+		this.carCollor = carCollor;
+	}
 
 	public String getChassi() {
 		return chassi;

@@ -25,16 +25,18 @@ public class RegisterOperation {
 
         switch (itemSale) {
             case 1:
+                Car car = registerCar();
+                TypeSale typeSale = new TypeSale();
+                InsertData.insertCar(car, typeSale);
+                break;
+            case 2:
                 PartCar partCar = registerPartCar();
                 InsertData.insertPartCar(partCar);
                 break;
-            case 2:
-                Car car = registerCar();
-                InsertData.insertCar(car);
-                break;
             case 3:
                 Car serviceCar = registerCar();
-                InsertData.insertCar(serviceCar);
+                TypeSale typeSale1 = new TypeSale();
+                InsertData.insertCar(serviceCar, typeSale1);
                 Mechanic mechanic = registerMechanic();
                 InsertData.insertMechanic(mechanic);
                 Service service = registerService(serviceCar, customer, mechanic);
@@ -108,6 +110,7 @@ public class RegisterOperation {
 
     public static Car registerCar() {
         System.out.println("Enter car's chassi");
+        sc.next();
         String chassi = sc.nextLine();
 
         System.out.println("Enter car's model");
@@ -115,15 +118,20 @@ public class RegisterOperation {
 
         System.out.println("Enter car's year");
         short carYear = sc.nextShort();
-        sc.nextLine(); // Consumir a quebra de linha pendente
+        sc.nextLine();
         System.out.println("Enter car's color");
         String carCollor = sc.nextLine();
 
+        TypeSale typesale = new TypeSale();
+        if (typesale.getSaleItem() == 1) {
         System.out.println("Enter car's price");
         Double carPrice = sc.nextDouble();
-
         Car car = new Car(chassi, carModel, carYear, carCollor, carPrice);
         return car;
+        } else {
+        Car car = new Car(chassi, carModel, carYear, carCollor);
+        return car;
+        }
     }
 
     public static Service registerService(Car car, Customer customer, Mechanic mechanic) {

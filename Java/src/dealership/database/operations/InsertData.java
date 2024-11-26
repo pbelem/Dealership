@@ -69,7 +69,7 @@ public class InsertData {
 	    }
 	}
 	
-	public static void insertCar(Car car) {
+	public static void insertCar(Car car, TypeSale typesale) {
 	    String url = "jdbc:postgresql://localhost:5432/DEALERSHIP_DATABASE";
 	    String user = "postgres";
 	    String password = "postgres";
@@ -78,12 +78,21 @@ public class InsertData {
 	        Connection con = DriverManager.getConnection(url, user, password);
 	        Statement stmt = con.createStatement();
 
-	        String sql = "INSERT INTO CAR (CHASSI, CAR_MODEL, CAR_YEAR, CAR_COLOR, CAR_PRICE) VALUES ('"
-	                + car.getChassi() + "', '"
-	                + car.getCarModel() + "', "
-	                + car.getCarYear() + ", '"
-	                + car.getCarCollor() + "', "
-	                + car.getCarPrice() + ")";
+	        String sql;
+	        if (typesale.getSaleItem() == 1) {
+	            sql = "INSERT INTO CAR (CHASSI, CAR_MODEL, CAR_YEAR, CAR_COLOR, CAR_PRICE) VALUES ('"
+	                    + car.getChassi() + "', '"
+	                    + car.getCarModel() + "', "
+	                    + car.getCarYear() + ", '"
+	                    + car.getCarCollor() + "', "
+	                    + car.getCarPrice() + ")";
+	        } else {
+	            sql = "INSERT INTO CAR (CHASSI, CAR_MODEL, CAR_YEAR, CAR_COLOR) VALUES ('"
+	                    + car.getChassi() + "', '"
+	                    + car.getCarModel() + "', "
+	                    + car.getCarYear() + ", '"
+	                    + car.getCarCollor() + "')";
+	        }
 
 	        stmt.executeUpdate(sql);
 	        System.out.println("Carro inserido com sucesso!");
@@ -92,6 +101,7 @@ public class InsertData {
 	        e.printStackTrace();
 	    }
 	}
+
 
 	public static void insertCustomer(Customer customer) {
 	    String url = "jdbc:postgresql://localhost:5432/DEALERSHIP_DATABASE";
@@ -197,7 +207,7 @@ public class InsertData {
 	                + sale.getCPFseller() + ")";
 
 	        stmt.executeUpdate(sql);
-	        System.out.println("Venda inserida com sucesso!");
+//	        System.out.println("Venda inserida com sucesso!");
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
