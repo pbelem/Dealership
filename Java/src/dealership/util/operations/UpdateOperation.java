@@ -1,8 +1,8 @@
-package dealership.util;
+package dealership.util.operations;
 
 import java.util.Scanner;
 
-import dealership.database.operations.UpdateData;
+import dealership.database.data.UpdateData;
 import dealership.entities.Car;
 import dealership.entities.Customer;
 import dealership.entities.Mechanic;
@@ -16,7 +16,7 @@ public class UpdateOperation {
 
     private static Scanner sc = new Scanner(System.in);
 
-    public static void dealershipSale() {
+    public static void updateOperation() {
         System.out.println("What do you want to update?");
         System.out.println("1. Seller");
         System.out.println("2. Customer");

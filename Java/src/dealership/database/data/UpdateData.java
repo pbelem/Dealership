@@ -1,4 +1,4 @@
-package dealership.database.operations;
+package dealership.database.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,9 +16,6 @@ import dealership.entities.Service;
 import dealership.entities.TypeSale;
 
 public class UpdateData {
-    public static void main(String[] args) {
-        // Você pode testar seus métodos de update aqui
-    }
 
     public static void updateAddress(Address address) {
         String url = "jdbc:postgresql://localhost:5432/DEALERSHIP_DATABASE";

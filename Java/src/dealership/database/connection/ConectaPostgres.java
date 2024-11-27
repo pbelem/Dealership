@@ -11,7 +11,8 @@ public class ConectaPostgres {
     public ResultSet rs; 
     private String endereco;
     private String usuario;
-    private String senha; 
+    @SuppressWarnings("unused")
+	private String senha; 
 
     public void Conectar(String strEnd, String strUsuario, String strSenha) {
 

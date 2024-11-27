@@ -1,8 +1,8 @@
-package dealership.util;
+package dealership.util.operations;
 
 import java.util.Scanner;
 
-import dealership.database.operations.InsertData;
+import dealership.database.data.InsertData;
 import dealership.entities.Car;
 import dealership.entities.Customer;
 import dealership.entities.Mechanic;
@@ -16,7 +16,7 @@ public class RegisterOperation {
 
     private static Scanner sc = new Scanner(System.in);
 
-    public static void dealershipSale() {
+    public static void registerOperation() {
         Seller seller = registerSeller();
         Customer customer = registerCustomer();
         Sale sale = registerSale(customer, seller);
@@ -159,6 +159,6 @@ public class RegisterOperation {
         Mechanic mechanic = new Mechanic(CPF_mechanic, nameMechanic);
         return mechanic;
     }
+    
 }
-
    

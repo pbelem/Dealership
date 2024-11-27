@@ -151,6 +151,12 @@ DELETE FROM part_car;
 DELETE FROM seller;
 DELETE FROM type_sale;
 
+CREATE VIEW CustomerPurchases AS
+SELECT Customers.Name AS CustomerName, Sales.SaleDate
+FROM Customers
+INNER JOIN Sales ON Customers.CustomerID = Sales.CustomerID;
+
+SELECT * FROM CustomerPurchases;
 
 
 

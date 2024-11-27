@@ -14,7 +14,8 @@ public class testeConexaoBD {
 
 	      try {
 	        Class.forName(driver);
-            Connection con = null;
+            @SuppressWarnings("unused")
+			Connection con = null;
             con = (Connection) DriverManager.getConnection(url, user, password);
     		System.out.println("Conex�o realizada com sucesso.");
 
