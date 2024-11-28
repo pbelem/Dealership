@@ -3,6 +3,7 @@ package dealership.database.data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ViewData {
@@ -14,26 +15,25 @@ public class ViewData {
 
         try {
             Connection con = DriverManager.getConnection(url, user, password);
-
             Statement stmt = con.createStatement();
 
-            String sql = "SELECT * FROM CustomerPurchases";
+            String sql = "SELECT * FROM detail_sale";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                String customerName = rs.getString("CustomerName");
-                String saleDate = rs.getString("SaleDate");
+                String customerName = rs.getString("name_customer");
+                String saleDate = rs.getString("sale_date");
+                String sellerName = rs.getString("name_seller");
 
-                System.out.println("Customer Name: " + customerName + ", Sale Date: " + saleDate);
+                System.out.println("Customer Name: " + customerName + ", Sale Date: " + saleDate + ", Seller Name: " + sellerName);
             }
 
             rs.close();
             stmt.close();
             con.close();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 }
-

@@ -24,7 +24,7 @@ public class SelectOperation {
         System.out.println("12. Listar todas as vendas");
 
         int option = sc.nextInt();
-        sc.nextLine();
+        sc.nextLine(); 
 
         switch (option) {
             case 1 -> selectSellerByCpf();
@@ -45,61 +45,61 @@ public class SelectOperation {
 
     private static void selectSellerByCpf() {
         System.out.println("Digite o CPF do vendedor que deseja consultar:");
-        String cpfSeller = sc.nextLine();
-        SelectData.selectSeller(cpfSeller);
+        long cpfSeller = sc.nextLong();
+        SelectData.selectSeller(cpfSeller);  
     }
 
     private static void listAllSellers() {
-        SelectData.selectAllSellers();
+        SelectData.selectAllSellers();  
     }
 
     private static void selectCustomerByCpf() {
         System.out.println("Digite o CPF do cliente que deseja consultar:");
-        String cpfCustomer = sc.nextLine();
-        SelectData.selectCustomer(cpfCustomer);
+        long cpfCustomer = sc.nextLong();
+        SelectData.selectCustomer(cpfCustomer);  
     }
 
     private static void listAllCustomers() {
-        SelectData.selectAllCustomers();
+        SelectData.selectAllCustomers();  
     }
 
     private static void selectCarByChassi() {
         System.out.println("Digite o chassi do carro que deseja consultar:");
         String chassi = sc.nextLine();
-        SelectData.selectCar(chassi);
+        SelectData.selectCar(chassi);  
     }
 
     private static void listAllCars() {
-        SelectData.selectAllCars();
+        SelectData.selectAllCars(); 
     }
 
     private static void selectServiceById() {
         System.out.println("Digite o ID do serviço que deseja consultar:");
         int idService = sc.nextInt();
-        SelectData.selectService(idService);
+        SelectData.selectService(idService);  
     }
 
     private static void listAllServices() {
-        SelectData.selectAllServices();
+        SelectData.selectAllServices();  
     }
 
     private static void selectPartCarBySerialNumber() {
         System.out.println("Digite o número de série da peça de carro que deseja consultar:");
         int serialNumber = sc.nextInt();
-        SelectData.selectPartCar(serialNumber);
+        SelectData.selectPartCar(serialNumber);  
     }
 
     private static void listAllPartCars() {
-        SelectData.selectAllPartCars();
+        SelectData.selectAllPartCars();  
     }
 
     private static void selectSaleById() {
         System.out.println("Digite o ID da venda que deseja consultar:");
         int idSale = sc.nextInt();
-        SelectData.selectSale(idSale);
+        SelectData.selectSale(idSale);  
     }
 
     private static void listAllSales() {
-        SelectData.selectAllSales();
+        SelectData.selectAllSales(); 
     }
 }

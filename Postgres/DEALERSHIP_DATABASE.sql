@@ -136,9 +136,23 @@ ALTER TABLE SALE
     ADD CONSTRAINT FK_SELLER_SALE FOREIGN KEY (CPF_SELLER) REFERENCES SELLER(CPF_SELLER),
     ADD CONSTRAINT FK_TYPE_SALE FOREIGN KEY (ID_TYPE_SALE) REFERENCES TYPE_SALE(ID_TYPE_SALE);
 
+-- 
 
-SELECT * FROM customer;
-SELECT id_sale FROM public.sale;
+CREATE VIEW detail_sale AS
+SELECT 
+    sale.sale_date,
+    seller.name_seller,
+    customer.name_customer
+FROM 
+    type_sale 
+INNER JOIN 
+    sale ON type_sale.id_type_sale = sale.id_type_sale
+INNER JOIN 
+    seller ON sale.cpf_seller = seller.cpf_seller
+INNER JOIN 
+    customer ON sale.cpf_customer = customer.cpf_customer;
+
+-- 
 
 DELETE FROM address;
 DELETE FROM service;
@@ -151,14 +165,12 @@ DELETE FROM part_car;
 DELETE FROM seller;
 DELETE FROM type_sale;
 
-CREATE VIEW CustomerPurchases AS
-SELECT Customers.Name AS CustomerName, Sales.SaleDate
-FROM Customers
-INNER JOIN Sales ON Customers.CustomerID = Sales.CustomerID;
+SELECT * FROM detail_sale;
+DROP VIEW IF EXISTS detail_sale;
 
-SELECT * FROM CustomerPurchases;
-
-
-
-
+INSERT INTO seller (cpf_seller, name_seller) VALUES ('12345678901', 'John Doe');
+INSERT INTO customer (cpf_customer, name_customer) VALUES ('10987654321', 'Jane Smith');
+INSERT INTO car (chassi, car_model, car_year, car_color, car_price, engine_block, license_plate) VALUES ('1HGBH41JXMN109186', 'Model S', 2022, 'Red', 60000.00, 'V8', 'ABC1234');
+INSERT INTO type_sale (id_type_sale, sale_item, item_price) VALUES (1, '1', 60000.00);
+INSERT INTO sale (id_sale, sale_date, cpf_customer, cpf_seller, id_type_sale) VALUES (1, '2023-11-01', '10987654321', '12345678901', 1);
 

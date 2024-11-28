@@ -29,13 +29,13 @@ public class ChooseOperation {
 				RegisterOperation.registerOperation();
 				break;
 			case 2:
-				DeleteOperation.deleteOperation();
-				break;
-			case 3:
 				SelectOperation.selectOperation();
 				break;
-			case 4:
+			case 3:
 				UpdateOperation.updateOperation();
+				break;
+			case 4:
+				DeleteOperation.deleteOperation();
 				break;
 			case 5:
 				ViewOperation.viewOperation();
@@ -48,6 +48,6 @@ public class ChooseOperation {
 			}
 		}
 		System.out.println("Program closed");
-		
+		sc.close();
 	}
 }

@@ -81,7 +81,7 @@ public class RegisterOperation {
     }
 
     public static byte registerTypeSale(Sale sale) {
-        System.out.println("Enter the sale's item");
+        System.out.println("Enter the sale's item\n1 - Car\n2 - Part car\n3 - Service");
         byte itemSale = sc.nextByte();
         while (itemSale < 0 || itemSale > 3) {
             System.out.println("Choose a valid answer");

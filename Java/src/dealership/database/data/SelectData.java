@@ -1,31 +1,25 @@
 package dealership.database.data;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class SelectData {
+    
+    private static String url = "jdbc:postgresql://localhost:5432/DEALERSHIP_DATABASE";
+    private static String user = "postgres";
+    private static String password = "postgres";
+    
+    public static void selectSeller(long cpfSeller) {
+        String sql = "SELECT * FROM SELLER WHERE CPF_SELLER = " + cpfSeller;
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/dealership_database";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
-
-    public static void selectSeller(String cpfSeller) {
-        String query = "SELECT * FROM SELLER WHERE CPF_SELLER = ?";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query)) {
-
-            pstmt.setString(1, cpfSeller);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    System.out.println("Vendedor encontrado:");
-                    System.out.println("CPF: " + rs.getString("CPF_SELLER"));
-                    System.out.println("Nome: " + rs.getString("NAME_SELLER"));
-                } else {
-                    System.out.println("Vendedor não encontrado.");
-                }
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            if (rs.next()) {
+                System.out.println("Nome do Vendedor: " + rs.getString("NAME_SELLER"));
+            } else {
+                System.out.println("Vendedor não encontrado.");
             }
 
         } catch (Exception e) {
@@ -34,169 +28,17 @@ public class SelectData {
     }
 
     public static void selectAllSellers() {
-        String query = "SELECT * FROM SELLER";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query);
-             ResultSet rs = pstmt.executeQuery()) {
+        String sql = "SELECT * FROM SELLER";
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
 
-            System.out.println("Lista de vendedores:");
+            ResultSet rs = stmt.executeQuery(sql);
+            
             while (rs.next()) {
-                System.out.println("CPF: " + rs.getString("CPF_SELLER") + " | Nome: " + rs.getString("NAME_SELLER"));
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void selectCustomer(String cpfCustomer) {
-        String query = "SELECT * FROM CUSTOMER WHERE CPF_CUSTOMER = ?";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query)) {
-
-            pstmt.setString(1, cpfCustomer);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    System.out.println("Cliente encontrado:");
-                    System.out.println("CPF: " + rs.getString("CPF_CUSTOMER"));
-                    System.out.println("Nome: " + rs.getString("NAME_CUSTOMER"));
-                } else {
-                    System.out.println("Cliente não encontrado.");
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void selectAllCustomers() {
-        String query = "SELECT * FROM CUSTOMER";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query);
-             ResultSet rs = pstmt.executeQuery()) {
-
-            System.out.println("Lista de clientes:");
-            while (rs.next()) {
-                System.out.println("CPF: " + rs.getString("CPF_CUSTOMER") + " | Nome: " + rs.getString("NAME_CUSTOMER"));
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void selectCar(String chassi) {
-        String query = "SELECT * FROM CAR WHERE CHASSI = ?";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query)) {
-
-            pstmt.setString(1, chassi);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    System.out.println("Carro encontrado:");
-                    System.out.println("Chassi: " + rs.getString("CHASSI"));
-                    System.out.println("Modelo: " + rs.getString("MODEL"));
-                    System.out.println("Ano: " + rs.getInt("YEAR"));
-                } else {
-                    System.out.println("Carro não encontrado.");
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void selectAllCars() {
-        String query = "SELECT * FROM CAR";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query);
-             ResultSet rs = pstmt.executeQuery()) {
-
-            System.out.println("Lista de carros:");
-            while (rs.next()) {
-                System.out.println("Chassi: " + rs.getString("CHASSI") + " | Modelo: " + rs.getString("MODEL"));
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void selectService(int idService) {
-        String query = "SELECT * FROM SERVICE WHERE ID_SERVICE = ?";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query)) {
-
-            pstmt.setInt(1, idService);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    System.out.println("Serviço encontrado:");
-                    System.out.println("ID Serviço: " + rs.getInt("ID_SERVICE"));
-                    System.out.println("Nome: " + rs.getString("NAME_SERVICE"));
-                    System.out.println("Preço: " + rs.getDouble("PRICE"));
-                } else {
-                    System.out.println("Serviço não encontrado.");
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void selectAllServices() {
-        String query = "SELECT * FROM SERVICE";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query);
-             ResultSet rs = pstmt.executeQuery()) {
-
-            System.out.println("Lista de serviços:");
-            while (rs.next()) {
-                System.out.println("ID Serviço: " + rs.getInt("ID_SERVICE") + " | Nome: " + rs.getString("NAME_SERVICE"));
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void selectPartCar(int serialNumber) {
-        String query = "SELECT * FROM PART_CAR WHERE SERIAL_NUMBER = ?";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query)) {
-
-            pstmt.setInt(1, serialNumber);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    System.out.println("Peça de carro encontrada:");
-                    System.out.println("Número de Série: " + rs.getInt("SERIAL_NUMBER"));
-                    System.out.println("Nome: " + rs.getString("PART_NAME"));
-                    System.out.println("Preço: " + rs.getDouble("PART_PRICE"));
-                } else {
-                    System.out.println("Peça de carro não encontrada.");
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void selectAllPartCars() {
-        String query = "SELECT * FROM PART_CAR";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query);
-             ResultSet rs = pstmt.executeQuery()) {
-
-            System.out.println("Lista de peças de carro:");
-            while (rs.next()) {
-                System.out.println("Número de Série: " + rs.getInt("SERIAL_NUMBER") + " | Nome: " + rs.getString("PART_NAME"));
+                System.out.println("CPF do Vendedor: " + rs.getString("CPF_SELLER"));
+                System.out.println("Nome do Vendedor: " + rs.getString("NAME_SELLER"));
+                System.out.println("----------------------");
             }
 
         } catch (Exception e) {
@@ -205,20 +47,21 @@ public class SelectData {
     }
 
     public static void selectSale(int idSale) {
-        String query = "SELECT * FROM SALE WHERE ID_SALE = ?";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query)) {
+        String sql = "SELECT s.*, sel.NAME_SELLER FROM SALE s " +
+                     "JOIN SELLER sel ON s.CPF_SELLER = sel.CPF_SELLER " +
+                     "WHERE s.ID_SALE = " + idSale;
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
 
-            pstmt.setInt(1, idSale);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    System.out.println("Venda encontrada:");
-                    System.out.println("ID Venda: " + rs.getInt("ID_SALE"));
-                    System.out.println("Data: " + rs.getString("SALE_DATE"));
-                } else {
-                    System.out.println("Venda não encontrada.");
-                }
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            if (rs.next()) {
+                System.out.println("ID da Venda: " + rs.getInt("ID_SALE"));
+                System.out.println("Data da Venda: " + rs.getDate("SALE_DATE"));
+                System.out.println("Vendedor: " + rs.getString("NAME_SELLER"));
+            } else {
+                System.out.println("Venda não encontrada.");
             }
 
         } catch (Exception e) {
@@ -227,14 +70,229 @@ public class SelectData {
     }
 
     public static void selectAllSales() {
-        String query = "SELECT * FROM SALE";
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement pstmt = con.prepareStatement(query);
-             ResultSet rs = pstmt.executeQuery()) {
+        String sql = "SELECT s.*, sel.NAME_SELLER FROM SALE s " +
+                     "JOIN SELLER sel ON s.CPF_SELLER = sel.CPF_SELLER";
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
 
-            System.out.println("Lista de vendas:");
+            ResultSet rs = stmt.executeQuery(sql);
+            
             while (rs.next()) {
-                System.out.println("ID Venda: " + rs.getInt("ID_SALE") + " | Data: " + rs.getString("SALE_DATE"));
+                System.out.println("ID da Venda: " + rs.getInt("ID_SALE"));
+                System.out.println("Data da Venda: " + rs.getDate("SALE_DATE"));
+                System.out.println("Vendedor: " + rs.getString("NAME_SELLER"));
+                System.out.println("----------------------");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void selectPartCar(int serialNumber) {
+        String sql = "SELECT * FROM PART_CAR WHERE SERIAL_NUMBER = " + serialNumber;
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            if (rs.next()) {
+                System.out.println("Número de Série: " + rs.getInt("SERIAL_NUMBER"));
+                System.out.println("Nome da Peça: " + rs.getString("PART_NAME"));
+                System.out.println("Preço da Peça: " + rs.getDouble("PART_PRICE"));
+            } else {
+                System.out.println("Peça não encontrada.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void selectAllPartCars() {
+        String sql = "SELECT * FROM PART_CAR";
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while (rs.next()) {
+                System.out.println("Número de Série: " + rs.getInt("SERIAL_NUMBER"));
+                System.out.println("Nome da Peça: " + rs.getString("PART_NAME"));
+                System.out.println("Preço da Peça: " + rs.getDouble("PART_PRICE"));
+                System.out.println("----------------------");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void selectMechanic(int cpfMechanic) {
+        String sql = "SELECT * FROM MECHANIC WHERE CPF_MECHANIC = " + cpfMechanic;
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            if (rs.next()) {
+                System.out.println("Nome do Mecânico: " + rs.getString("NAME_MECHANIC"));
+            } else {
+                System.out.println("Mecânico não encontrado.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void selectAllMechanics() {
+        String sql = "SELECT * FROM MECHANIC";
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while (rs.next()) {
+                System.out.println("CPF do Mecânico: " + rs.getString("CPF_MECHANIC"));
+                System.out.println("Nome do Mecânico: " + rs.getString("NAME_MECHANIC"));
+                System.out.println("----------------------");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void selectService(int idService) {
+        String sql = "SELECT * FROM SERVICE WHERE ID_SERVICE = " + idService;
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            if (rs.next()) {
+                System.out.println("ID do Serviço: " + rs.getInt("ID_SERVICE"));
+                System.out.println("Nome do Serviço: " + rs.getString("SERVICE_NAME"));
+                System.out.println("Data do Serviço: " + rs.getDate("SERVICE_DATE"));
+                System.out.println("Preço do Serviço: " + rs.getDouble("SERVICE_PRICE"));
+            } else {
+                System.out.println("Serviço não encontrado.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void selectAllServices() {
+        String sql = "SELECT * FROM SERVICE";
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while (rs.next()) {
+                System.out.println("ID do Serviço: " + rs.getInt("ID_SERVICE"));
+                System.out.println("Nome do Serviço: " + rs.getString("SERVICE_NAME"));
+                System.out.println("Data do Serviço: " + rs.getDate("SERVICE_DATE"));
+                System.out.println("Preço do Serviço: " + rs.getDouble("SERVICE_PRICE"));
+                System.out.println("----------------------");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void selectCar(String chassi) {
+        String sql = "SELECT * FROM CAR WHERE CHASSI = '" + chassi + "'";
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            if (rs.next()) {
+                System.out.println("Chassi: " + rs.getString("CHASSI"));
+                System.out.println("Modelo do Carro: " + rs.getString("CAR_MODEL"));
+                System.out.println("Ano do Carro: " + rs.getInt("CAR_YEAR"));
+                System.out.println("Cor do Carro: " + rs.getString("CAR_COLOR"));
+                System.out.println("Preço do Carro: " + rs.getDouble("CAR_PRICE"));
+            } else {
+                System.out.println("Carro não encontrado.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void selectAllCars() {
+        String sql = "SELECT * FROM CAR";
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while (rs.next()) {
+                System.out.println("Chassi: " + rs.getString("CHASSI"));
+                System.out.println("Modelo do Carro: " + rs.getString("CAR_MODEL"));
+                System.out.println("Ano do Carro: " + rs.getInt("CAR_YEAR"));
+                System.out.println("Cor do Carro: " + rs.getString("CAR_COLOR"));
+                System.out.println("Preço do Carro: " + rs.getDouble("CAR_PRICE"));
+                System.out.println("----------------------");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void selectCustomer(long cpfCustomer) {
+        String sql = "SELECT * FROM CUSTOMER WHERE CPF_CUSTOMER = " + cpfCustomer;
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            if (rs.next()) {
+                System.out.println("Nome do Cliente: " + rs.getString("NAME_CUSTOMER"));
+                System.out.println("CPF do Cliente: " + rs.getString("CPF_CUSTOMER"));
+                System.out.println("Endereço: " + rs.getString("ADDRESS"));
+                System.out.println("Telefone: " + rs.getString("PHONE"));
+            } else {
+                System.out.println("Cliente não encontrado.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void selectAllCustomers() {
+        String sql = "SELECT * FROM CUSTOMER";
+        
+        try (Connection con = DriverManager.getConnection(url, user, password);
+             Statement stmt = con.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while (rs.next()) {
+                System.out.println("Nome do Cliente: " + rs.getString("NAME_CUSTOMER"));
+                System.out.println("CPF do Cliente: " + rs.getString("CPF_CUSTOMER"));
+                System.out.println("Endereço: " + rs.getString("ADDRESS"));
+                System.out.println("Telefone: " + rs.getString("PHONE"));
+                System.out.println("----------------------");
             }
 
         } catch (Exception e) {

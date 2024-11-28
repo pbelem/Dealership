@@ -47,7 +47,7 @@ public class DeleteData {
     }
 
     private static void executeDelete(String sql, String successMessage) {
-        String url = "jdbc:postgresql://localhost:5432/dealership_database";
+        String url = "jdbc:postgresql://localhost:5432/DEALERSHIP_DATABASE";
         String user = "postgres";
         String password = "postgres";
 
