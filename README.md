@@ -10,7 +10,7 @@ https://github.com/luiamerico
 
 <h2>logical modeling</h2>
 
-![picture2](https://github.com/pbelem/dealership/blob/main/Assets/modelagemLogicaDealership.png?raw=true)
+![picture2](https://github.com/pbelem/Dealership/blob/main/Assets/ModelagemLogicaDealership.png?raw=true)
 
 <h2>Technologies used and versions</h2>
 <table>
